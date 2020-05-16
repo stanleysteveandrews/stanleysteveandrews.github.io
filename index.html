@@ -55,11 +55,41 @@
                 career that fits my professional skills, and personality. 
                 This page highlights recent activities, thoughts, and notes. 
             </p>
+			
+			
+			
+			
+			
         </div>
         
         <div class="clear"></div>
-        
         <dl>
+			<dd class="clear"></dd>
+			<dt>May 16th 2020</dt>
+			<dd>
+			<h2>AWS Cloudfront & ACM</h2>
+			<p>The inital setup with using S3 to host static files works fine, but it only serves HTTP. I thought I might use AWS ACM (Certificate Manager) to issue a certificate, then use AWS Cloudfront to implement it.</p>
+			<p><b>BE SURE TO CHANGE THE REGION TO 'US East (N. Virginia)us-east-1' BEFORE PROCEEDING !!! (ask me how I know)</b></p>
+			<p>Within ACM I requested a certificate for *.stanleysteveandrews.net and an additional name of stanleysteveandrews.net and selected DNS verification. In NameCheap, the trailing domain name needs to be stripped from the Host value (see <a href='https://stackoverflow.com/questions/51198472/cname-entry-not-working-on-namecheap-using-amazon-certificate-manager
+'>https://stackoverflow.com/questions/51198472/cname-entry-not-working-on-namecheap-using-amazon-certificate-manager</a>). It may take a bit to propogate, and if need be, there are good instructions on troubleshooting the verification here: <a href='https://aws.amazon.com/premiumsupport/knowledge-center/acm-certificate-pending-validation/'>https://aws.amazon.com/premiumsupport/knowledge-center/acm-certificate-pending-validation/</a>
+			</p>
+			<p>Next up is the CloudFront setup:
+				<ul>
+					<li>Select the S3 bucket as the origin</li>
+					<li>I chose redirect HTTP to HTTPS</li>
+					<li>Choose the custom certificate generated eariler in ACM</li>
+					<li>Added stanleysteveandrews.net as Alternate CNAME / Domain Name</li>
+					<li>Wait for Cloud Formation to spin up and grab the endpoint URL (ex. a1b2c3d4e5f6g7.cloudfront.net)</li>
+					<li>Change my NameCheap redirect to point at the CloudFront endpoint URL </li>
+					<li>I added in a www. redirect as well</li>
+				</ul>
+			</p>
+			<p>And that's about it. Now we're serving up HTTPS via Amazon's CDN from an S3 bucket that automatically updates from my Github page which I edit with NotePad++ on Windows and push changes via GIT BASH CLI. Awesome.</p>
+				<ul>
+					<li> 
+		
+		
+		
             <dd class="clear"></dd>
 			<dt>May 16th 2020</dt>
 			<dd>
