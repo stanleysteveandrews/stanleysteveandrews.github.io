@@ -89,10 +89,24 @@
 			curl -X POST -i 'http://192.168.88.76:8001/api/v2/applications/111012010001' (Vudu)<br />
 			curl -X POST -i 'http://192.168.88.76:8001/api/v2/applications/11101200001' (Netflix)<br />
 			</code>
+			<br />
 			<p>
-			I'll need to play around with this later...
+			A little more Google-Fu and I discovered discussions on using wscat to connect to via websockets and sending commands. I have Ubuntu WSL installed, so a quick <i><b>sudo apt install node-ws</b></i> and I'm ready to go.</p>
+			<p> First out of the gate is converting the TV name (found when viewing http://<ip.address>:8001/api/v2/) to base64 (I used <a href='https://www.base64encode.org/'>https://www.base64encode.org/</a>).
 			</p>
-			
+			<p>
+			Next is getting an access token by issuing the command <br /><i><b>wscat -n -c https://192.168.88.76:8002/api/v2/channels/samsung.remote.control?name=W1RWXSBTYW1zdW5nVFY=</b></i>. Notice the "?name=" bit. Use the base64 encoded name after that (mine was W1RWXSBTYW1zdW5nVFY=). This should trigger a message on the TV to "Allow". Use the remote to click allow, and a response including an access token will follow on the command line followed by a prompt where commands can be entered. 
+			</p>
+			<a href="./images/samsung_tv/wscat_connect.png"><img src="./images/samsung_tv/wscat_connect.png" width="672" height="191" /></a>
+			<p>
+			From here on, connecting can be done with the token in the form of <i><b>wscat -n -c https://<ip.address>:8002/api/v2/channels/samsung.remote.control?token=<8 digit token></b></i>
+			</p>
+			<p>
+			Now with the web socket prompt, I can issue commands like: <br />
+			<i><b>{"method":"ms.channel.emit","params":{"event": "ed.installedApp.get", "to":"host"}}</i></b><br />
+			 to list installed apps and their IDs and<br />
+			<i><b>{"method": "ms.channel.emit","params": {"event": "ed.apps.launch","to": "host","data": {"appId": "11101200001","action_type": "DEEP_LINK"}}}</i></b><br /> to launch Netflix<br />
+			<i>(Note: anything with "app_type": 2 uses DEEP_LINK and "app_type": 4 is NATIVE_LAUNCH.)</i>
 			
 			
 			</p>
