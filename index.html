@@ -26,6 +26,7 @@
         dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
         dd { width: 600px; float: right; }
         dd.clear { float: none; margin: 0; height: 15px; }
+		code { font-family: monospace; font-size: 10px;}
      </style>
 </head>
 
@@ -68,6 +69,37 @@
         <div class="clear"></div>
         <dl>
 		
+		
+			<dd class="clear"></dd>
+			<dt>June 7th 2020</dd>
+			<dd>
+			<h2>Samsung SmartTV</h2>
+			<p>Earlier this year I purchased a new 4K tv to replace an older TCL 55" that was acting up. I went with a Samsung QLED 65", specifically model QN65Q80RAFXZA. As I had hacked around with the TCL and it's Roku interface enough to figure out it's web interface and API, I figured I'd look into what the Samsung TV has to offer.</p>
+			<p>First up was a bit of Googling followed by an NMAP (Zenmap) scan of the device. This was first attempted while it was powered off with no success (unlike the TCL / Roku). After powering on and re-scanning, I got results:</p>
+			<a href="./images/samsung_tv/nmap_scan.png"><img src="./images/samsung_tv/nmap_scan.png" width="380" height="183"/></a>
+			<p>Next, I tried accessing each port in a web browser. Not much luck with that, so back to Google where I found an api URL: 
+			<a href="http://192.168.88.76:8001/api/v2/">http://192.168.88.76:8001/api/v2/</a>. This yielded: </p>
+			<a href="./images/samsung_tv/api_page.png"><img src="./images/samsung_tv/api_page.png" width="676" height="294" /></a>
+			<p>
+			Next I found some info on using cURL to GET and POST to URLs like:</p>
+			<code>
+			curl -X POST -i 'http://192.168.88.76:8001/api/v2/applications/MCmYXNxgcu.DisneyPlus' (opens)<br />
+			curl -X DELETE -i 'http://192.168.88.76:8001/api/v2/applications/MCmYXNxgcu.DisneyPlus' (closes) <br />
+			curl -X POST -i 'http://192.168.88.76:8001/api/v2/applications/3201512006785' (Amazon Prime)<br />
+			curl -X POST -i 'http://192.168.88.76:8001/api/v2/applications/111012010001' (Vudu)<br />
+			curl -X POST -i 'http://192.168.88.76:8001/api/v2/applications/11101200001' (Netflix)<br />
+			</code>
+			<p>
+			I'll need to play around with this later...
+			</p>
+			
+			
+			
+			</p>
+			
+			</dd>
+			
+			
 			<dd class="clear"></dd>
 			<dt>June 2nd 2020</dt>
 			<dd>
