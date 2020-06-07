@@ -105,7 +105,9 @@
 			Now with the web socket prompt, I can issue commands like: <br />
 			<i><b>{"method":"ms.channel.emit","params":{"event": "ed.installedApp.get", "to":"host"}}</i></b><br />
 			 to list installed apps and their IDs and<br />
-			<i><b>{"method": "ms.channel.emit","params": {"event": "ed.apps.launch","to": "host","data": {"appId": "11101200001","action_type": "DEEP_LINK"}}}</i></b><br /> to launch Netflix<br />
+			<i><b>{"method": "ms.channel.emit","params": {"event": "ed.apps.launch","to": "host","data": {"appId": "11101200001","action_type": "DEEP_LINK"}}}</i></b><br /> to launch Netflix or<br />
+			<i><b>{"method":"ms.channel.emit","params":{"event": "ed.apps.launch", "to":"host", "data":{"appId":"org.tizen.browser","action_type":"NATIVE_LAUNCH","metaTag":"http:\/\/hackaday.com"}}}</b></i><br />
+			to launch a web browser.<br /><br />
 			<i>(Note: anything with "app_type": 2 uses DEEP_LINK and "app_type": 4 is NATIVE_LAUNCH.)</i>
 			
 			
