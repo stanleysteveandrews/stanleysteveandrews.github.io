@@ -26,7 +26,7 @@
         dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
         dd { width: 600px; float: right; }
         dd.clear { float: none; margin: 0; height: 15px; }
-		code { font-family: monospace; font-size: 10px;}
+		code { font-family: monospace; font-size: 11px; font-weight: bold;}
      </style>
 </head>
 
@@ -95,20 +95,38 @@
 			<p> First out of the gate is converting the TV name (found when viewing http://<ip.address>:8001/api/v2/) to base64 (I used <a href='https://www.base64encode.org/'>https://www.base64encode.org/</a>).
 			</p>
 			<p>
-			Next is getting an access token by issuing the command <br /><i><b>wscat -n -c https://192.168.88.76:8002/api/v2/channels/samsung.remote.control?name=W1RWXSBTYW1zdW5nVFY=</b></i>. Notice the "?name=" bit. Use the base64 encoded name after that (mine was W1RWXSBTYW1zdW5nVFY=). This should trigger a message on the TV to "Allow". Use the remote to click allow, and a response including an access token will follow on the command line followed by a prompt where commands can be entered. 
+			Next is getting an access token by issuing the command <br />
+			<code>wscat -n -c https://192.168.88.76:8002/api/v2/channels/samsung.remote.control?name=W1RWXSBTYW1zdW5nVFY=</code><br />
+			Notice the "?name=" bit. Use the base64 encoded name after that (mine was W1RWXSBTYW1zdW5nVFY=). This should trigger a message on the TV to "Allow". Use the remote to click allow, and a response including an access token will follow on the command line followed by a prompt where commands can be entered. 
 			</p>
 			<a href="./images/samsung_tv/wscat_connect.png"><img src="./images/samsung_tv/wscat_connect.png" width="672" height="191" /></a>
 			<p>
-			From here on, connecting can be done with the token in the form of <i><b>wscat -n -c https://<ip.address>:8002/api/v2/channels/samsung.remote.control?token=<8 digit token></b></i>
+			From here on, connecting can be done with the token in the form of <br />
+			<code>wscat -n -c https://<ip.address>:8002/api/v2/channels/samsung.remote.control?token=<8 digit token></code>
 			</p>
 			<p>
-			Now with the web socket prompt, I can issue commands like: <br />
-			<i><b>{"method":"ms.channel.emit","params":{"event": "ed.installedApp.get", "to":"host"}}</i></b><br />
-			 to list installed apps and their IDs and<br />
-			<i><b>{"method": "ms.channel.emit","params": {"event": "ed.apps.launch","to": "host","data": {"appId": "11101200001","action_type": "DEEP_LINK"}}}</i></b><br /> to launch Netflix or<br />
-			<i><b>{"method":"ms.channel.emit","params":{"event": "ed.apps.launch", "to":"host", "data":{"appId":"org.tizen.browser","action_type":"NATIVE_LAUNCH","metaTag":"http:\/\/hackaday.com"}}}</b></i><br />
-			to launch a web browser.<br /><br />
+			Now with the web socket prompt, I can: <br /><br />
+			list installed apps and their IDs <br />
+			<code>{"method":"ms.channel.emit","params":{"event": "ed.installedApp.get", "to":"host"}}</code><br /><br />
+			launch Netflix<br />
+			<code>{"method": "ms.channel.emit","params": {"event": "ed.apps.launch","to": "host","data": {"appId": "11101200001","action_type": "DEEP_LINK"}}}</code><br /><br /> launch a web browser<br />
+			<code>{"method":"ms.channel.emit","params":{"event": "ed.apps.launch", "to":"host", "data":{"appId":"org.tizen.browser","action_type":"NATIVE_LAUNCH","metaTag":"http:\/\/hackaday.com"}}}</code><br />
+			<br /><br />
 			<i>(Note: anything with "app_type": 2 uses DEEP_LINK and "app_type": 4 is NATIVE_LAUNCH.)</i>
+			</p>
+			<p>
+			Taking things a step further, any of the commands that a remote would send can be sent using this methid as well. A list of key commands can be found here:<br />
+			<a href="https://github.com/jaruba/ha-samsungtv-tizen/blob/a644f2db4ba74865ac9b8a12425825aa8a3c3efd/Key_codes.md">https://github.com/jaruba/ha-samsungtv-tizen/blob/a644f2db4ba74865ac9b8a12425825aa8a3c3efd/Key_codes.md</a><br />
+			The commands would look like: <br />
+			<code>{"params": {"Cmd": "Click", "Option": "false", "TypeOfRemote": "SendRemoteKey", "DataOfCmd": "KEY_VOLUP"}, "method": "ms.remote.control"}</b></i><br /><br />
+			
+			<code>{"params": {"Cmd": "Click", "Option": "false", "TypeOfRemote": "SendRemoteKey", "DataOfCmd": "KEY_VOLDOWN"}, "method": "ms.remote.control"}</b></i><br /><br />
+
+			
+			<code>{"params": {"Cmd": "Click", "Option": "false", "TypeOfRemote": "SendRemoteKey", "DataOfCmd": "KEY_INFO"}, "method": "ms.remote.control"}</b></i><br /><br />
+
+			
+			
 			
 			
 			</p>
