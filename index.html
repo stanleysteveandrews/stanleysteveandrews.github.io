@@ -72,6 +72,90 @@
         <div class="clear"></div>
         <dl>
 			
+			<dd class="clear"></dd>
+			<dt>June 29th 2020</dt>
+			<dd>
+			<h2>OSS + ELC NA 2020 - Schedule</h2>
+			<p><i>(The sessions I'm attending or watching later)</i></p>
+<pre><pre><code>
+9:30am – 10:15am Keynote: Opening Remarks and Project Updates
+Jim Zemlin, Executive Director, The Linux Foundation with Guests: Gabriele Columbro, ED of FINOS; Priyanka Sharma, GM of CNCF; Steven Tan, VP & CTO Cloud Solution, Storage at Futurewei; and J.R. Storment, PreKeynote Theater
+Speakers: Steven Tan, Gabriele Columbro, Jim Zemlin, Priyanka Sharma, J.R. Storment
+
+10:15am – 10:45am Keynote: Linus Torvalds, Creator of Linux & Git, in conversation with Dirk Hohndel, Vice President & Chief Open Source Officer, VMwareKeynote Theater
+Speakers: Dirk Hohndel, Linus Torvalds
+
+11:00am – 1:00pm Sponsor ShowcaseSponsor Showcase
+
+11:30am – 1:00pm Tutorial: Introduction to the Embedded Boot Loader U-boot
+Behan Webster, Converse in Code101 Essentials Theater
+Speakers: Behan Webster
+
+11:30am – 1:00pm Tutorial: Bashful to Bold - A Bash Primer 
+Alex Juarez, Rackspace101 Essentials Theater
+Speakers: Alex Juarez <a href='https://github.com/mralexjuarez/oss-bash-primer'>https://github.com/mralexjuarez/oss-bash-primer</a>
+
+12:30pm – 1:20pm DIY Smart Home Demonstration and How-to Using FOSS
+Kathy Giori, MicroBlocksInternet of Things Theater
+Speakers: Kathy Giori
+
+2:05pm – 2:55pm Monitoring: A New Approach
+Tom King, The Linux Foundation101 Essentials Theater
+Speakers: Tom King
+
+2:05pm – 2:55pm Why Is There No Free Software Vulnerability Database?
+Philippe Ombredanne, AboutCode.org and nexB Inc. & Michael Herzog, nexB Inc.OS Dependability Theater
+Speakers: Michael Herzog, Philippe Ombredanne
+
+3:20pm – 4:50pm Tutorial: Systemd: The Adventure Continues
+Lee Elston, The Linux Foundation101 Essentials Theater
+Speakers: Lee Elston
+
+3:45pm – 4:10pm Hack the Project Onboarding Process: Learning by Writing Tutorials as a New Contributor
+Emily Shaffer, GoogleOS Project Updates Theater
+Speakers: Emily Shaffer
+
+4:20pm – 5:10pm The Definitive Deep Dive into the .git Folder 
+Rob Richardson, IndependentWildcard Theater
+Speakers: Rob Richardson
+</pre></pre></code>
+			
+			
+			
+			
+			<dd class="clear"></dd>
+			<dt>June 29th 2020</dt>
+			<dd>
+			<h2>OSS + ELC NA 2020 - Keynote</h2>
+			<p>Today starts the Open Source Summit & Embedded Linux Conference North America. The keynote session with Linus Torvalds & Dirk Hohndel was great! Some of my notes:
+<pre><pre><code>
+Dirk Hohndel
+Vice President & Chief Open Source Officer
+VMware
+
+Linus Torvalds
+Fellow
+Linux Foundation
+
+kernel 8.4RC
+increase in number of developers working on linux kernel over time
+kernel veterans, 3 decades of experience
+new blood needed to eventually take over
+diversity in group
+
+Linus new AMD Threadripper desktop
+prefers quite work environment, but willing to hear a bit more noise when compiling
+<br />
+ARM as 1st class citizen in architecture
+	Apple moving to ARM (from Intel)
+	remembering Apple PowerPC
+	AWS Graviton CPU (ARM)
+	performance vs power consumption
+</pre></pre></code>
+						
+				</p>
+			</p>
+			</dd>
 			
 			<dd class="clear"></dd>
 			<dt>June 28th 2020</dt>
@@ -107,12 +191,12 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 "Authorization: Bearer YOUR_API_TOKEN_HERE"
 ));
 $response = curl_exec($ch);
-curl_close($ch);</pre></code></pre>
+curl_close($ch);</code></pre></pre>
 			
 			<br /><p>Next up, I need to decode the returned JSON into an array and echo out the names:</p>
 <pre><pre><code>$result = json_decode($response, true); // decode the JSON feed
 foreach($result['attendees'] as $elem)  {
-echo $elem['profile']['name'];</pre></code></pre>
+echo $elem['profile']['name'];</code></pre></pre>
 			<br /><p>
 			It took me a bit to wrap my head around the JSON structure as it's a nested array, but once I got that sorted I was good to go.
 			
