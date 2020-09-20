@@ -26,7 +26,8 @@
         dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
         dd { width: 600px; float: right; }
         dd.clear { float: none; margin: 0; height: 15px; }
-		
+		img.one { height: auto; width: auto; }
+		img.two { height: 50%; width: 50%;}
 		
      </style>
 	 <link rel="stylesheet" type="text/css" href="style.css">
@@ -68,6 +69,24 @@
         
 		<div class="clear"></div>
         <dl>
+			<dd class="clear"></dd>
+			<dt>September 19th 2020</dt>
+			<dd>
+			<h2>RTL-SDR NOAA Satellite Images</h2>
+			<p>
+			For kicks I decided to fashion a 137MHz dipole antenna and break out the RTL-SDR dongle to pick up some NOAA satellite images. Pretty much everything that you need to know about this procedure can be found 
+			<a href='https://www.rtl-sdr.com/a-simple-guide-to-setting-up-a-diy-noaa-weather-satellite-ground-station/' target='_blank'>on the rtl-sdr.com website.</a></p>
+			<p>
+			The first run didn't come out to well. I discovered that the satellite frequencies for the NOAA satellites were incorrect in WXtoIMG and I started off at the wrong spot. Once I got that sorted out I took another run and got a decent output, especially for a quick antenna build. The images shown below came from NOAA 18, 2020-09-20 03:43 UTC.
+			</p>
+			<a href="./images/noaa_img/noaa-18-09200343-no.jpg"><img class="two" src="./images/noaa_img/noaa-18-09200343-no.jpg" /></a>
+			<a href="./images/noaa_img/noaa-18-09200343-mcir.jpg"><img class="two" src="./images/noaa_img/noaa-18-09200343-mcir.jpg" /></a>
+			<a href="./images/noaa_img/noaa-18-09200343-contrasta.jpg"><img class="two" src="./images/noaa_img/noaa-18-09200343-contrasta.jpg" /></a>
+			<a href="./images/noaa_img/rtl-sdr_setup.jpg"><img class="two" src="./images/noaa_img/rtl-sdr_setup.jpg" /></a>
+			<a href="./images/noaa_img/137mhz_dipole_antenna.jpg"><img class="two" src="./images/noaa_img/137mhz_dipole_antenna.jpg" /></a>
+			</dd>
+			
+			
 			
 			<dd class="clear"></dd>
 			<dt>July 27th 2020</dt>
